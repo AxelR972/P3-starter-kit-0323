@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create new Team{% endblock %}
+
+{% block body %}
+
+    {% include 'team/_form.html.twig' with { 'title' : 'Add'} %}
+
+    <a href="{{ path('team_index') }}">back to list</a>
+{% endblock %}
