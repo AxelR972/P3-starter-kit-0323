@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\TeamRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -32,7 +31,7 @@ class Team
     #[ORM\Column(length: 255)]
     private ?string $country = null;
 
-    #[ORM\OneToMany(mappedBy: 'team', targetEntity: Players::class)]
+    #[ORM\OneToMany(mappedBy: 'team', targetEntity: Player::class)]
     private Collection $players;
 
     #[ORM\Column(nullable: true)]
@@ -58,6 +57,11 @@ class Team
         $this->name = $name;
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     /**
@@ -108,14 +112,14 @@ class Team
     }
 
     /**
-     * @return Collection<int, Players>
+     * @return Collection<int, Player>
      */
     public function getPlayers(): Collection
     {
         return $this->players;
     }
 
-    public function addPlayer(Players $player): self
+    public function addPlayer(Player $player): self
     {
         if (!$this->players->contains($player)) {
             $this->players->add($player);
@@ -125,7 +129,7 @@ class Team
         return $this;
     }
 
-    public function removePlayer(Players $player): self
+    public function removePlayer(Player $player): self
     {
         if ($this->players->removeElement($player)) {
             // set the owning side to null (unless already changed)

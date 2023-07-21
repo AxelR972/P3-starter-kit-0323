@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Player index
+{% endblock %}
+
+{% block body %}
+	<h1 class="text-center title">PLAYERS</h1>
+
+	<div class="text-center">
+		<a href="{{ path('player_new') }}" class="btn btn-success mt-3">Create New</a>
+	</div>
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+		{% for player in players %}
+			<div class="col mb-4">
+				<div class="card border-info h-100" id="card-{{ loop.index }}">
+					<img src="{{ asset('images/' ~ player.imageName) }}" alt="{{ player.lastname }}" class="card-img-top logo">
+					<div class="card-body">
+						<h5 class="card-title">{{ player.firstname }}
+							{{ player.lastname }}</h5>
+						<p class="card-text">Country:
+							{{ player.country }}</p>
+						<p class="card-text">Position:
+							{{ player.position }}</p>
+						<p class="card-text">Number:
+							{{ player.number }}</p>
+						<p class="card-text">Club:
+							{% if player.team %}
+								{{ player.team.name }}{% else %}No Club
+							{% endif %}
+						</p>
+					</div>
+					<div class="card-footer d-flex justify-content-between">
+						<a href="{{ path('player_show', {'id': player.id}) }}" class="btn btn-primary">Show</a>
+						<a href="{{ path('player_edit', {'id': player.id}) }}" class="btn btn-secondary">Edit</a>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<div class="col">
+				<div class="card">
+					<div class="card-body">
+						<p class="card-text">No records found</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}

@@ -4,35 +4,36 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container mt-5">
-		<h1 class="mb-4">Team index</h1>
+	<h1 class="text-center title">TEAMS</h1>
 
-		<table class="table table-bordered table-striped">
-			<thead class="table-dark">
-				<tr>
-					<th>Name</th>
-					<th>Country</th>
-					<th>Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for team in teams %}
-					<tr>
-						<td>{{ team.name }}</td>
-						<td>{{ team.country }}</td>
-						<td class="d-flex justify-content-center">
-							<a href="{{ path('team_show', {'id': team.id}) }}" class="btn btn-primary btn-sm me-2">Show</a>
-							<a href="{{ path('team_edit', {'id': team.id}) }}" class="btn btn-info btn-sm">Edit</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="4" class="text-center">No records found</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-
-		<a href="{{ path('team_new') }}" class="btn btn-success">Create new</a>
+	<div class="text-center">
+		<a href="{{ path('team_new') }}" class="btn btn-success mt-3">Create New</a>
+	</div>
+	<div class="row row-cols-1 row-cols-md-3 g-4">
+		{% for team in teams %}
+			<div class="col mb-4">
+				<div class="card border-info h-100">
+					<img src="{{ asset('images/' ~ team.imageName) }}" alt="{{ team.name }}" class="card-img-top logo">
+					<div class="card-body">
+						<h5 class="card-title">{{ team.name }}</h5>
+						<p class="card-text">Country:
+							{{ team.country }}
+                        </p>
+					</div>
+					<div class="card-footer d-flex justify-content-between">
+						<a href="{{ path('team_show', {'id': team.id}) }}" class="btn btn-primary">Show</a>
+						<a href="{{ path('team_edit', {'id': team.id}) }}" class="btn btn-secondary">Edit</a>
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<div class="col">
+				<div class="card">
+					<div class="card-body">
+						<p class="card-text">No records found</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
 	</div>
 {% endblock %}

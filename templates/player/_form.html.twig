@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Team
+{% block title %}Player
 {% endblock %}
 
 {% block body %}
@@ -8,12 +8,12 @@
 		<div class="row row-cols-1 vh-100 d-flex justify-content-center align-items-center">
 			<div class="col">
 				<h1 class="text-center">
-					Team
+					Player
 				</h1>
 				{{ form_start(form) }}
 				{{ form_widget(form) }}
 				<div class="d-grid gap-0 mt-6">
-					<button type="submit" class="btn btn-outline-success btn-add link-dark">Add</button>
+					<button type="submit" class="btn btn-outline-warning btn-add link-dark">Update</button>
 				</div>
 				{{ form_end(form) }}
 			</div>

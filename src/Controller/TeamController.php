@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Team;
 use App\Form\TeamType;
+use App\Repository\PlayerRepository;
 use App\Repository\TeamRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -58,7 +59,7 @@ class TeamController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $teamRepository->save($team, true);
 
-            return $this->redirectToRoute('index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('team_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('team/edit.html.twig', [

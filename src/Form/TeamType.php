@@ -30,12 +30,8 @@ class TeamType extends AbstractType
 
         ->add('country', CountryType::class, [
             'label' => 'Country',
-            'required' => 'Name is required',
-            'constraints' => [
-                new NotBlank(['message' => 'The project name can be empty']),
-            ],
             'row_attr' => [
-                'placeholder' => 'Team name',
+                'placeholder' => 'Country',
                 'class' => 'col-sm-2 col-form-label'
             ],
         ])
