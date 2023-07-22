@@ -40,7 +40,7 @@ class Player
     #[ORM\Column]
     private ?int $number = null;
 
-    #[ORM\ManyToOne(inversedBy: 'player')]
+    #[ORM\ManyToOne(inversedBy: 'players')]
     private ?Team $team = null;
 
     public function getId(): ?int

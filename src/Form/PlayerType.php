@@ -88,7 +88,7 @@ class PlayerType extends AbstractType
                 'row_attr' => [
                     'class' => 'col-sm-2 col-form-label'
                 ]
-            ]);
+                ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
